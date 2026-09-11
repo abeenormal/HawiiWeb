@@ -1,0 +1,344 @@
+@charset "utf-8";
+
+
+/* HTML Styles */
+html {
+	background-color: aliceblue;
+	font-family: Roboto, 'Gill Sans', 'Comic Sans MS', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 22px;	
+	height: 100%;
+	width: min-max(100%, 100vw);
+}
+
+
+* {
+	box-sizing: border-box;
+}
+
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: repeat(8, 100px, 1fr);
+	margin: 0 auto;	
+	border: solid 20px rgb(235, 179, 179);
+	background-image: linear-gradient(rgb(137, 233, 220), rgb(235, 179, 179), yellow, rgb(50, 100, 238));
+	background-repeat: no-repeat;
+	background-position: center;	
+	overflow: hidden;
+
+
+	
+    grid-template-areas:
+	"main-img  top-text"
+	"main-img  top-text"
+	"main-img  right-img"
+	"main-img  right-img"
+	"main-img  right-img";
+}
+
+.left-image {
+	grid-area: main-img;
+	display: block;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	justify-content: center;
+	align-content: center;
+	padding-left: 40px;
+	border-right: solid 20px rgb(235, 179, 179);
+	background-image: linear-gradient(rgb(137, 233, 220), rgb(235, 179, 179), yellow, rgb(50, 100, 238));
+	background-repeat: no-repeat;
+	background-position: center;	
+	background-size: cover;
+	
+	
+}
+
+.top-text {
+	grid-area: top-text;
+	font-size: 2rem;
+	font-family: Tangerine, serif;
+	color: rgb(23, 117, 129);
+	text-shadow: 4px 4px 5px rgba(112, 91, 91, 0.6);
+	text-align: center;
+	align-content: center;
+}
+	
+.bottom-image {
+	grid-area: right-img;
+	display:block;
+	object-fit: cover;
+	padding-bottom: 20px;
+
+}
+
+.grid-container-2 {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: repeat(3, 300px);
+	margin: 0 auto;	
+	border: solid 20px rgb(235, 179, 179);
+	position: relative;
+	z-index: 5;
+	
+	grid-template-areas:
+	"left-img  video right-img"
+	"left-img  video right-img"
+	"left-img  video right-img";
+}
+
+.grid-container-2::before {
+		content:"";
+		position: absolute;
+  		top: 0;
+ 		left: 0;
+ 		right: 0;
+  		bottom: 0;
+		z-index: -1; /* Keeps image behind text/foreground */
+  		background-image: url('champagne2.jpg');
+  		background-size: cover;
+  		background-position: center;
+		opacity: .7;
+	    filter: brightness(1.0); 
+	}
+	
+
+.rounded-image {
+	grid-area: left-img;
+	display: block;
+	place-self: center;
+	max-height: 100%;
+	max-width: 100%;
+	object-fit:contain;
+	min-width: 0;
+	min-height: 0;
+	border-radius: 30%;
+	border: solid 5px black;
+	box-shadow: 0 0 20px rgba(112, 91, 91, 0.6);
+	transform-origin: bottom center;
+	z-index: 5;	
+}
+
+
+
+.rounded-image.is-dancing {
+	animation: dance 1.0s ease-in-out infinite alternate;
+
+}
+
+
+
+
+@keyframes dance {
+    0% {
+        transform: rotate(-8deg) translateX(0px) translateY(0px) scale(1);
+    }
+    25% {
+        transform: rotate(0deg) translateX(10px) translateY(-12px) scale(1.1); /* Upward bounce */
+    }
+    50% {
+        transform: rotate(8deg) translateX(20px) translateY(0px) scale(1);
+    }
+    75% {
+        transform: rotate(0deg) translateX(10px) translateY(-12px) scale(1.1); /* Upward bounce */
+    }
+    100% {
+        transform: rotate(-8deg) translateX(0px) translateY(0px) scale(1);
+    }
+}
+
+.vince {
+	grid-area: video;
+	position:relative;
+	width: 100%;
+	height: 100%;
+	min-width: 0;
+	min-height: 0;
+	overflow: hidden;
+	background-color:rgb(235, 179, 179);
+}
+
+.vince video {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	display: block;
+
+}
+
+.custom-controls {
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+   
+
+}
+.rounded-image-flipped {
+	grid-area: right-img;
+	transform: scaleX(-1);
+	display: block;
+	place-self: center;
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: contain;
+	min-width: 0;
+	min-height: 0;
+	border-radius: 30%;
+	border: solid 5px black;
+	box-shadow: 5px 10px 25px rgba(112,91,91,0.6);
+	transform-origin: bottom center;	
+	transform: scaleX(-1);
+}
+
+.rounded-image-flipped.is-dancing {
+	animation: dance-flipped 1.0s ease-in-out infinite alternate;
+}
+
+
+@keyframes dance-flipped {
+    0% {
+        transform: rotate(8deg) translateX(0px) translateY(0px) scale(1);
+    }
+    25% {
+        transform: rotate(0deg) translateX(-10px) translateY(12px) scale(1.1); /* Upward bounce */
+    }
+    50% {
+        transform: rotate(-8deg) translateX(-20px) translateY(0px) scale(1);
+    }
+    75% {
+        transform: rotate(0deg) translateX(-10px) translateY(12px) scale(1.1); /* Upward bounce */
+    }
+    100% {
+        transform: rotate(8deg) translateX(0px) translateY(0px) scale(1);
+    }
+}
+
+
+
+
+
+
+
+.text-container {
+	display: block;
+	font-size: 3rem;
+	font-family: Tangerine, serif;
+	color: rgb(23, 117, 129);
+	text-shadow: 4px 4px 5px rgb(104, 112, 111);
+	text-align: center;
+	align-content: center;
+	width: 100%;
+	height: auto;
+	background-image:linear-gradient( rgb(137, 233, 220), rgb(235, 179, 179), yellow, rgb(50, 100, 238));;
+	border: 10px solid rgb(235, 179, 179);
+	
+}
+
+.image-grid {
+	position: relative;
+	column-count: 4; /* Number of columns */
+    column-gap: 12px;
+    padding: 12px;
+	height: auto;
+    background-image:linear-gradient(to bottom, rgb(137, 233, 220), rgb(235, 179, 179), yellow, rgb(50, 100, 238));
+	padding-bottom: 50px;
+	
+	
+}
+.text-container-2 {
+	position:absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;	
+	text-align: center;
+	
+}
+
+.image-grid::after {
+	content: "Living and Loving the Dream";
+	position:absolute;
+	bottom: 30px;
+	left: 0;
+	right: 0;
+	width: 100%;
+	justify-self:center;
+	text-align: center;
+	font-size: 3rem;
+	font-family: Tangerine, serif;
+	color: rgb(253, 174, 4);
+	font-weight: bold;
+	letter-spacing: 0.9px;
+	text-shadow: 5px 5px 7px rgb(104, 112, 111);
+	z-index: 2;	
+	pointer-events: none;
+
+}
+
+.image-wrapper {
+  break-inside: avoid; /* Prevents images from breaking across columns */
+  margin-bottom: 12px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto; /* Preserves natural image proportions */
+  display: block;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+/* Responsive Column Adjustments */
+@media (max-width: 1024px) { .image-grid { column-count: 3; } }
+@media (max-width: 768px)  { .image-grid { column-count: 2; } }
+@media (max-width: 480px)  { .image-grid { column-count: 1; } }
+  
+
+.image-wrapper img:hover {
+  transform: scale(1.03);
+}
+
+.zoom-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0 ,0, 0, 0.85);
+	z-index: 1000;
+}
+
+/* Zoom Overlay (Hidden by Default) */
+.zoom-overlay.active {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Zoomed Image Constraints */
+.zoom-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+
